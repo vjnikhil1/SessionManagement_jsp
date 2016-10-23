@@ -31,7 +31,30 @@ public class AdminServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		HttpSession session = req.getSession();
 		String action = req.getParameter("Action");
-		if(action.equals("view")){
+		if(action.equals("purchase")){
+			ResultSet rs=null;
+			ArrayList all=new ArrayList();
+			try {
+					Connection con = DBConnect.prepareConn();
+					Statement stmt=con.createStatement();
+					rs=stmt.executeQuery("select * from purchase_details");
+					while(rs.next()){
+						ArrayList one=new ArrayList();
+						one.add(rs.getString(2));
+						one.add(rs.getString(3));
+						//System.out.println((String)one.get(0));
+						all.add(one);
+					}
+					DBConnect.closeConn(con);  
+					session.setAttribute("purchaselist", all);
+				}
+				catch (Exception ex) {
+					System.out.println ("Exception in executeQuery()...."+ex);
+				}
+			session.setAttribute("content_page","purchase.jsp");
+			res.sendRedirect("admin/template.jsp");	
+		}
+		else if(action.equals("view")){
 			ResultSet rs=null;
 			ArrayList all=new ArrayList();
 			try {
@@ -54,7 +77,7 @@ public class AdminServlet extends HttpServlet{
 			session.setAttribute("content_page","view.jsp");
 			res.sendRedirect("admin/template.jsp");		
 		}
-		if(action.equals("insertmedicine")){
+		else if(action.equals("insertmedicine")){
 			Connection con=DBConnect.prepareConn();
 			String name=req.getParameter("MedicineName");
 			String sql="insert into medicines (medicinename) values('"+name+"')";
@@ -63,7 +86,7 @@ public class AdminServlet extends HttpServlet{
 			session.setAttribute("content_page","messageadd.jsp");
 			res.sendRedirect("admin/template.jsp");		
 		}
-		if(action.equals("deletemedicine")){
+		else if(action.equals("deletemedicine")){
 			Connection con=DBConnect.prepareConn();
 			String name=req.getParameter("MedicineName");
 			String sql="delete from medicines where medicinename='"+name+"'";
@@ -72,19 +95,19 @@ public class AdminServlet extends HttpServlet{
 			session.setAttribute("content_page","messageadd.jsp");
 			res.sendRedirect("admin/template.jsp");		
 		}
-		if(action.equals("insert")){
+		else if(action.equals("insert")){
 			session.setAttribute("content_page", "insert.jsp");
 			res.sendRedirect("admin/template.jsp");
 		}
-		if(action.equals("delete")){
+		else if(action.equals("delete")){
 			session.setAttribute("content_page", "delete.jsp");
 			res.sendRedirect("admin/template.jsp");
 		}
-		if(action.equals("edit")){
+		else if(action.equals("edit")){
 			session.setAttribute("content_page", "edit.jsp");
 			res.sendRedirect("admin/template.jsp");
 		}
-		if(action.equals("editmedicine")){
+		else if(action.equals("editmedicine")){
 			String old = req.getParameter("OldMedicineName");
 			String newm = req.getParameter("NewMedicineName");
 			Connection con = DBConnect.prepareConn();

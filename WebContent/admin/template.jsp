@@ -12,6 +12,7 @@ ul.tabs
     margin:0;
     list-style-type: none;
     text-align: center; /*set to left, center, or right to align the tabs as desired*/
+    width:1000px;
 }
         
 ul.tabs li
@@ -76,13 +77,14 @@ body
 </style>
 </head>
 <body>
-<div style="width: 800px; margin: 0 auto; padding: 120px 0 40px;">
+<div style="width: 1000px; margin: 0 auto; padding: 120px 0 40px;">
 <ul class="tabs" data-persist="true">
 	<li><a href="template.jsp">Welcome Admin</a></li>
 	<li><a href="../ad?Action=insert">Add Medicines</a></li>
 	<li><a href="../ad?Action=edit">Edit Medicines</a></li>
 	<li><a href="../ad?Action=delete">Delete Medicines</a></li>
 	<li><a href="../ad?Action=view">View Login Details</a></li>
+	<li><a href="../ad?Action=purchase">View Purchase Details</a></li>
 	<li><a href="../do?MOD=ALUM&Action=logOff">Logout</a></li>
 </ul>
 <div class="tabcontents">

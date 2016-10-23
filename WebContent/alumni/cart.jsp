@@ -6,5 +6,8 @@ for(int i=0;i<s.size();i++){%>
 	<%=(String)s.get(i) %><hr><br>
 <%
 }
+session.setAttribute("cartvalues", s);
 %>
-<input type="button" href="" name="Proceed to Checkout" value="Proceed to Checkout"/>
+<form action="../do?MOD=ALUM&Action=purchase" method="post">
+<input type="submit" name="Proceed to Checkout" value="Proceed to Checkout">
+</form>

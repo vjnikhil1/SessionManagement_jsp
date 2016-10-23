@@ -63,6 +63,20 @@ public class AluminiServlet extends HttpServlet {
 			//module selection code
 			//-------------------------------------------------------------------------------------
 			if(mod.equals("ALUM")){
+				if(action.equals("purchase")){
+					String s=new String();
+					ArrayList values=(ArrayList)session.getAttribute("cartvalues");
+					ArrayList al=(ArrayList)session.getAttribute("name");
+					System.out.println(values.size());
+					for(int i=0;i<values.size();i++){
+						s = s.concat((String)values.get(i)+",");
+					}
+					String sql="insert into purchase_details (name,products) values ('"+al.get(1)+"','"+s+"')";
+					//System.out.println(sql);
+					DBConnect.updateQuery(sql);
+					session.setAttribute("content_page", "success.jsp");
+					res.sendRedirect("alumni/template.jsp");
+				}
 				if(action.equals("cart")){
 					String[] a=req.getParameterValues("cart");
 					//System.out.println(a[0]+a[1]);
