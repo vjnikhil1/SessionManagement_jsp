@@ -115,14 +115,8 @@ public class AluminiServlet extends HttpServlet {
 					System.out.println("hello");
 					String name=req.getParameter("name");
 					String pass=req.getParameter("pass");
-					String bname=req.getParameter("bname");
-					String yop=req.getParameter("yop");
-					String add=req.getParameter("add");
-					String mob=req.getParameter("mob");
-					String email=req.getParameter("email");
-					String rollno=req.getParameter("rollno");
-					String sql="insert into alumni_details (name,pass,branch,yop,add1,email,mob,rollno) "+
-						"values('"+name+"','"+pass+"','"+bname+"','"+yop+"','"+add+"','"+email+"','"+mob+"','"+rollno+"')";
+					String sql="insert into user_details (name,pass) "+
+						"values('"+name+"','"+pass+"')";
 					System.out.println (sql);
 					int up=DBConnect.updateQuery(sql);
 					//res.sendRedirect("login.jsp");		

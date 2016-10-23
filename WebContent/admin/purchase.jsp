@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
-<% ArrayList pd = (ArrayList)session.getAttribute("purchasedetails"); %>
-<table>
+<% ArrayList pd = (ArrayList)session.getAttribute("purchaselist"); %>
+<table border=1>
   <tr>
     <th>Name</th>
     <th>Products purchased</th>

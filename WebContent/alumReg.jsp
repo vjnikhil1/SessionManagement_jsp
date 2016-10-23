@@ -214,25 +214,7 @@ hr{
       <div class="blockinput">
         <i class="icon-envelope-alt"></i><input type="password" placeholder="Create a  Pasword" name="pass">
       </div>
-      <div class="blockinput">
-        <i class="icon-envelope-alt"></i><input type="text" placeholder="bname" name="bname">
-      </div>
-      <div class="blockinput">
-        <i class="icon-envelope-alt"></i><input type="number" placeholder="Year of passing" name="yop">
-      </div>
-<div class="blockinput">
-        <i class="icon-unlock"></i><input type="text" placeholder="Roll Number" name="rollno">
-      </div>
-
-      <div class="blockinput">
-        <i class="icon-unlock"></i><input type="text" placeholder="Address" name="add">
-      </div>
-<div class="blockinput">
-        <i class="icon-unlock"></i><input type="mail" placeholder="Email" name="email">
-      </div>
-<div class="blockinput">
-        <i class="icon-unlock"></i><input type="number" placeholder="Phone number" name="mob">
-      </div>
+      
 
     </div>
     
