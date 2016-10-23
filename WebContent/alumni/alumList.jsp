@@ -16,7 +16,7 @@ java.util.ArrayList one=(java.util.ArrayList)al.get(i);
 <b>Mobile No. :</b><%=(String)one.get(5)%><br/>
 <b><a href="../do?MOD=ALUM&Action=Scrap&rId=<%=(String)one.get(6)%>">Send Scrap to <%=(String)one.get(0)%></a></b><BR/>
 </div>
-</div>
+</div><br/>
 <%
 }//for
 }//if

@@ -26,6 +26,7 @@ public class AluminiServlet extends HttpServlet {
 	private String uname="";
 	private String upass="";
 	private String http_url="";
+	ArrayList<String> b=new ArrayList<String>();
 	
 	public void init(){
 		System.out.println ("In init()......");
@@ -62,6 +63,15 @@ public class AluminiServlet extends HttpServlet {
 			//module selection code
 			//-------------------------------------------------------------------------------------
 			if(mod.equals("ALUM")){
+				if(action.equals("cart")){
+					String[] a=req.getParameterValues("cart");
+					//System.out.println(a[0]+a[1]);
+					ArrayList<String> c = new ArrayList<String>(Arrays.asList(a));
+					b.addAll(c);
+					session.setAttribute("cartvalues", b);
+					session.setAttribute("content_page", "cart.jsp");
+					res.sendRedirect("alumni/template.jsp");
+				}
 				if(action.equals("Addach")){
 					String id=req.getParameter("id");
 					String sql="select * from alumni_details where id="+id;
@@ -115,13 +125,36 @@ public class AluminiServlet extends HttpServlet {
 					if(a.size()>0){
 					String t = (String)a.get(1);
 					DBConnect.updateQuery("insert into login_details (name,timestamp) values('"+t+"',NOW());");
-					//session.setAttribute("content_page","aprofile.jsp");
+					ResultSet rs=null;
+					ArrayList all=new ArrayList();
+					try {
+							Statement stmt=con.createStatement();
+							rs=stmt.executeQuery("select * from medicines");
+							while(rs.next()){
+								ArrayList one=new ArrayList();
+								one.add(rs.getString(2));
+								//System.out.println((String)one.get(0));
+								all.add(one);
+								//System.out.println(one.get(0));
+							}
+							DBConnect.closeConn(con);  
+							session.setAttribute("medicinelist", all);
+						}
+						catch (Exception ex) {
+							System.out.println ("Exception in executeQuery()...."+ex);
+						}
+					session.setAttribute("name", a);
+					session.setAttribute("content_page","home.jsp");
 					res.sendRedirect("alumni/template.jsp");		
 					}
 					else
 					{
 						res.sendRedirect("login.jsp");
 					}
+				}
+				else if(action.equals("Store")){
+					session.setAttribute("content_page","home.jsp");
+					res.sendRedirect("alumni/template.jsp");
 				}
 				else if(action.equals("View")){
 					int id=Integer.parseInt(req.getParameter("id"));
